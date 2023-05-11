@@ -1,6 +1,5 @@
-#direções possíveis (provavelmente colocar isso em outro arquivo)
 
-# hi friends, this is only a test
+#direções possíveis (provavelmente colocar isso em outro arquivo)
 
 UP = 0
 LEFT = 1
