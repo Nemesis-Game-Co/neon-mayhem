@@ -5,9 +5,10 @@ from entities.shield import Shield
 
 from pygame import image, Surface, transform
 
-class Player:
+class Player():
 
     def __init__(self):
+
         self.alive = True
         self.shield = Shield()
         self.health = 3

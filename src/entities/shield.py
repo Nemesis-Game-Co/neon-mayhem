@@ -3,10 +3,11 @@ from game import game_constants
 # game_constants.SCREEN_WIDTH = x
 # game_constants.SCREEN_HEIGHT = y
 
-class Shield:
+class Shield():
 
     # adicionar o parâmetro lane depois, talvez
     def __init__(self):
+
         self.direction = "RIGHT"
         self.color = "Blue"
         self.width = 100
