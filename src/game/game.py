@@ -98,10 +98,17 @@ class Game():
 
             self.player.draw_at(self.screen)
 
-            for projectile in self.blast_list:
-                projectile.draw_at(self.screen)
-                projectile.update_position()
+            eliminated = []
+            
+            for i in range(len(self.blast_list)):
+                self.blast_list[i].draw_at(self.screen)
+                self.blast_list[i].update_position()
 
+                if self.blast_list[i].blast_rect.colliderect(self.player.rect):
+                    eliminated.append(self.blast_list[i])
+
+            self.blast_list = [x for x in self.blast_list if x not in eliminated]
+            
         pygame.display.flip()
 
     def spawn_blast(self):
