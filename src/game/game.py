@@ -79,8 +79,10 @@ class Game():
 
         self.current_state = self.states['MENU']
 
-        # cria as entidades do jogo
+        # cria as entidades do jogo e inicializa o escudo
         self.player = Player()
+        self.player.shield.update_shield_lane('RIGHT')
+        
         
     def screen_management(self) -> None:
         if self.current_state == self.states['MENU']:
@@ -93,10 +95,10 @@ class Game():
         elif self.current_state == self.states['LEVEL']:
             
             self.screen.blit(self.level_surface, (0, 0))
-            
-            self.player.shield.draw_at(self.screen)
 
             self.player.draw_at(self.screen)
+
+            self.screen.blit(self.player.shield.shield_sprite, self.player.shield.shield_rect)
 
             eliminated = []
             
@@ -105,6 +107,10 @@ class Game():
                 self.blast_list[i].update_position()
 
                 if self.blast_list[i].blast_rect.colliderect(self.player.rect):
+                    print('Você foi atingido!')
+                    eliminated.append(self.blast_list[i])
+                
+                elif self.blast_list[i].blast_rect.colliderect(self.player.shield.shield_rect):
                     eliminated.append(self.blast_list[i])
 
             self.blast_list = [x for x in self.blast_list if x not in eliminated]
